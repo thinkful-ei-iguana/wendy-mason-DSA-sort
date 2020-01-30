@@ -238,10 +238,9 @@ newLL.insertLast(3);
 // mergeSort(newLL);
 
 
-//Bucket sort
-//
-const bucket = [50,7,17,22,3,48,38,35,40]
-      
+//6 Bucket sort
+const bucket = [50, 7, 17, 22, 3, 48, 38, 35, 40]
+
 
 //while arr[i] is > low, then swap and i++
 //while arr[j] is < j, then swap and j--
@@ -249,16 +248,16 @@ const bucket = [50,7,17,22,3,48,38,35,40]
 //low = 3, high = 50
 function sort(arr, low, high) {
   let i = 0;
-  let j = arr.length-1;
+  let j = arr.length - 1;
 
-  while(j >=i) {
-    while(arr[i] > low && j>i) {
+  while (j > i) {
+    while (arr[i] > low && j > i) {
       i++;
     }
-    while(arr[j] < high && j > i) {
+    while (arr[j] < high && j > i) {
       j--;
     }
-    if(arr[i] > arr[j]) {
+    if (arr[i] > arr[j]) {
       swap(arr, i, j);
       i++;
       j--;
@@ -268,4 +267,43 @@ function sort(arr, low, high) {
   return arr;
 }
 
-sort(bucket);
+// sort(bucket, 3, 50);
+
+//7 Sort in place
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+// console.log(shuffle(arr));
+
+
+//8 Sorting Books
+function bookSort(array) {
+  let swaps = 0;
+  for (let i = 0; i < array.length - 1; i++) {
+    let current = array[i];
+    let next = array[i + 1];
+    if (current.localeCompare(next) >= 0) {
+      swap(array, i, i + 1);
+      swaps++;
+    }
+  }
+
+  if (swaps > 0) {
+    return bookSort(array);
+  }
+  console.log(array);
+  return array;
+}
+const library = [
+  'The REXX Language',
+  'Teach Yourself C++ In 21 Days',
+  'The C++ Programming Language',
+  'JavaScript: The Good Parts',
+  'JavaScript: The Definitive Guide',
+  'Windows Vista for Dummies',
+  'NIV Study Bible',
+  'Janes Fighting Ships',
+  'The Official Chuck Norris Fact Book'
+];
+bookSort(library);
